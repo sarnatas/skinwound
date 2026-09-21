@@ -1,0 +1,24 @@
+# --- OS / editor ---
+.DS_Store
+**/.DS_Store
+__MACOSX/
+.vscode/
+.idea/
+
+# --- notebooks: session state / caches ---
+__marimo__/
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# --- raw / large data: never commit (GitHub limit = 100 MB per file) ---
+# Students download the published data from GEO (see data/README.md)
+data/*
+!data/README.md
+
+# --- large intermediate objects ---
+*.h5ad
+*.zarr/
+*.rds
+*.h5
+*.loom
