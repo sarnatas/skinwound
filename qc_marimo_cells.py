@@ -12,7 +12,7 @@ def _():
 
 
 @app.cell
-def _(): 
+def _():
     import scanpy as sc
     import spatialdata as sd
     import spatialdata_io
@@ -26,16 +26,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## QC — metriche per-sample e comprensive
 
     `sc.pp.calculate_qc_metrics` viene girato due volte: una volta per campione
     (per confrontare le distribuzioni tra Skin/Wound1/Wound7/Wound30), e una volta
     sull'oggetto con tutti gli spot uniti (per una vista comprensiva/pooled, utile
     per decidere soglie collettive).
-    """
-    )
+    """)
     return
 
 
@@ -87,7 +85,7 @@ def _(data_folder, qc_metrics, samples, sd, spatialdata_io):
     table_all = sdata_all["table"].copy()
     qc_metrics(table_all)
     table_all.obs["region"] = table_all.obs["region"].astype(str)
-    return sdata_all, table_all
+    return (table_all,)
 
 
 @app.cell
@@ -213,7 +211,7 @@ def _(adatas, out_folder, pd, samples):
     summary = pd.DataFrame(_rows)
     summary.to_csv(f"{out_folder}/qc_summary_per_sample.csv", index=False)
     summary
-    return (summary,)
+    return
 
 
 if __name__ == "__main__":
