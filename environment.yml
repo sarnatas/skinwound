@@ -23,3 +23,11 @@ dependencies:
       # --- immagini / utility ---
       - scikit-image
       - openpyxl
+
+      # --- batch correction demo (ST + sc) ---
+      - harmonypy
+      - bbknn
+      - scanorama
+
+      # --- clustering resolution selection ---
+      - git+https://github.com/spatial-cell-id/resolute.git
