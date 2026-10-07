@@ -31,3 +31,11 @@ dependencies:
 
       # --- clustering resolution selection ---
       - git+https://github.com/spatial-cell-id/resolute.git
+
+      # --- spatial deconvolution (Cell2location) ---
+      # versions tested together (Linux, CPU) in a smoke test; pyro-ppl is pinned
+      # to 1.9.1 because cell2location 0.1.5 imports `deep_getattr`, which was
+      # removed in pyro-ppl 1.9.2 (ImportError otherwise)
+      - scvi-tools==1.4.2
+      - cell2location==0.1.5
+      - pyro-ppl==1.9.1
