@@ -1,0 +1,21 @@
+/* Light touches on top of the Quarto "cosmo" theme */
+
+/* Student notebook: colour-code the code cells by type (RUN / READ / YOUR TURN).
+   Quarto exposes the cell tags of the notebook as a data-tags attribute. */
+.cell-code pre.sourceCode { border-left: 4px solid #ced4da; }
+.cell[data-tags*="run"]       .cell-code pre.sourceCode { border-left-color: #2f9e44; }
+.cell[data-tags*="read"]      .cell-code pre.sourceCode { border-left-color: #1c7ed6; }
+.cell[data-tags*="your-turn"] .cell-code pre.sourceCode { border-left-color: #f08c00; background: #fff9db; }
+
+/* Answer-reveal boxes and question cells */
+details { border: 1px solid #dee2e6; border-radius: 6px; padding: .4rem .9rem; margin: 1rem 0; background: #f8f9fa; }
+details summary { cursor: pointer; }
+
+/* Rendered notebooks have no outputs: keep the page compact */
+.cell { margin-bottom: 1rem; }
+
+.course-card { border: 1px solid #dee2e6; border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; }
+.course-card h3 { margin-top: 0; }
+.legend-run  { color: #2f9e44; font-weight: 600; }
+.legend-read { color: #1c7ed6; font-weight: 600; }
+.legend-turn { color: #f08c00; font-weight: 600; }

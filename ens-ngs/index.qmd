@@ -1,0 +1,64 @@
+---
+title: "ENS de Lyon: NGS practicals"
+subtitle: "Spatial transcriptomics (Visium) and integration with scRNA-seq"
+---
+
+**Audience:** M2 students, ENS de Lyon. **Data:** Visium ([GSE241124](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241124)) and scRNA-seq ([GSE241132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241132)) of the same donor, at four timepoints (healthy skin, day 1, day 7, day 30 after wounding).
+
+::: {.callout-important}
+## The notebook
+[**Open the student notebook (web version)**](notebooks/Analysis_students.ipynb), or download it to work on it: [`Analysis_students.ipynb`](https://raw.githubusercontent.com/sarnatas/skinwound/main/ens-ngs/notebooks/Analysis_students.ipynb) (right-click, *save link as*) together with [`ens_helpers.py`](notebooks/ens_helpers.py), which must sit **in the same folder**.
+
+The web version shows the instructions and the code, but **no results**: the figures appear when *you* run the notebook.
+:::
+
+## What you will do
+
+1. Quality control and filtering of Visium spots and genes, normalisation, dimensionality reduction and clustering.
+2. Think about **batch effects**, and when *not* to correct them.
+3. Analyse the matching scRNA-seq data of the same donor and **annotate cell types** from marker genes.
+4. **Annotate the spatial clusters** and **deconvolve** the spots with Cell2location.
+5. Read the results: *where* are the cell types, *when*, and *next to whom*?
+
+## How the notebook is organised
+
+Every code cell starts with a banner that says what is expected from you.
+
+| Banner | Meaning |
+|---|---|
+| <span class="legend-run">RUN</span> | Run the cell as is. Repetitive plotting and bookkeeping code is hidden in `ens_helpers.py`; the banner says what the function does. |
+| <span class="legend-read">READ</span> | Tricky or new code, shown in full: run it, but also read it and be ready to explain it. |
+| <span class="legend-turn">YOUR TURN</span> | **You write the code.** Blanks are marked `____`; the banner lists the steps and what you should obtain. |
+
+*Question* cells are for short written answers, to be discussed together. Boxes marked *try on your own first, then click* contain the discussion.
+
+## Setup
+
+**1. Python environment** (download [`environment.yml`](../environment.yml)):
+
+```bash
+mamba env create -f environment.yml
+mamba activate skinwound
+```
+
+Then open the notebook with Jupyter (or VS Code) using the `skinwound` environment as kernel.
+
+**2. Data.** The notebook expects one course folder (the variable `BASE` in the second cell of the notebook) organised as follows:
+
+```
+BASE/
+└── data/
+    ├── GSE241124_RAW/            Visium: folders Skin/, Wound1/, Wound7/, Wound30/ (Space Ranger outputs)
+    ├── GSE241132_RAW/            scRNA-seq: folders PWH27D0/, PWH27D1/, PWH27D7/, PWH27D30/
+    │   └── GSE241132_cell_metadata.txt
+    ├── paper_marker_genes.csv    marker genes reported in the paper
+    └── processed_data/           instructors' checkpoints and the Cell2location output
+```
+
+The raw data are public on GEO and are **not** stored in this repository. On the course machines the folder is already prepared: ask the instructors for its location. Your own results are written to `BASE/my_results/`.
+
+## Tips
+
+- Run the cells **in order**, and read the error message before asking for help.
+- Whenever you pick a threshold or a parameter, be ready to justify it with a plot.
+- If you are stuck, the instructors' checkpoints in `processed_data/` are a safety net (commented out in the notebook). Their cluster numbers may differ from yours: redo your annotation dictionaries if you use them.

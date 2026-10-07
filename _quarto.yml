@@ -1,0 +1,53 @@
+project:
+  type: website
+  output-dir: _site
+  # Only what is listed here is rendered/published. The instructor notebook
+  # (ens-ngs/notebooks/Analysis.ipynb) and the READMEs are NOT part of the site.
+  render:
+    - index.qmd
+    - background.qmd
+    - ens-ngs/index.qmd
+    - ens-ngs/notebooks/Analysis_students.ipynb
+  resources:
+    - environment.yml
+    - ens-ngs/notebooks/ens_helpers.py
+
+website:
+  title: "Skin wound healing: ST & scRNA-seq"
+  site-url: https://sarnatas.github.io/skinwound
+  repo-url: https://github.com/sarnatas/skinwound
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: ENS – NGS practicals
+        menu:
+          - href: ens-ngs/index.qmd
+            text: Course page and setup
+          - href: ens-ngs/notebooks/Analysis_students.ipynb
+            text: Student notebook
+      - href: background.qmd
+        text: Background
+    right:
+      - icon: github
+        href: https://github.com/sarnatas/skinwound
+        aria-label: GitHub repository
+  page-footer:
+    center: "Teaching material based on Liu et al., Cell Stem Cell 2025 (GSE241124, GSE241132)."
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    toc-title: "On this page"
+    code-copy: true
+    code-overflow: wrap
+    smooth-scroll: true
+
+# The site only renders: notebooks are never executed in CI (no data, no heavy environment).
+execute:
+  enabled: false

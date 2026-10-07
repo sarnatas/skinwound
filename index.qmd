@@ -1,0 +1,26 @@
+---
+title: "Spatiotemporal roadmap of human skin wound healing"
+subtitle: "Teaching material built on published Visium (spatial) and Chromium (scRNA-seq) datasets"
+toc: false
+---
+
+This site gathers the practicals built on the dataset of **Liu et al., *Spatiotemporal single-cell roadmap of human skin wound healing*, Cell Stem Cell 2025**: human acute wounds sampled in the same volunteers before wounding and at days 1, 7 and 30, profiled with 10x Visium (GEO [GSE241124](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241124)) and 10x Chromium scRNA-seq (GEO [GSE241132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241132)).
+
+::: {.course-card}
+### ENS de Lyon: NGS practicals
+Spatial transcriptomics and its integration with scRNA-seq: QC, clustering, batch effects, cell-type annotation, deconvolution with Cell2location, spatial neighbourhoods.
+
+[**Open the student notebook →**](ens-ngs/notebooks/Analysis_students.ipynb){.btn .btn-primary} [Course page and setup](ens-ngs/index.qmd){.btn .btn-outline-secondary}
+:::
+
+::: {.course-card}
+### SupBioTech M2 (Paris): scRNA-seq
+*In preparation.*
+:::
+
+::: {.course-card}
+### CNRS professional training: spatial transcriptomics
+*In preparation.*
+:::
+
+New to the biology or to the datasets? Read the [background page](background.qmd).

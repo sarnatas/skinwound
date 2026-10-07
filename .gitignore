@@ -22,3 +22,8 @@ data/*
 *.rds
 *.h5
 *.loom
+
+# --- Quarto site (built by GitHub Actions, never committed) ---
+_site/
+.quarto/
+/.jupyter_cache/

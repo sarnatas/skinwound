@@ -1,8 +1,8 @@
 """Cell2location deconvolution: reference signatures + spatial mapping.
 
 Usage:
-    python run_cell2location.py --profile vm  --threads 32 --inputs c2l_inputs --out c2l_out
-    ppython run_cell2location.py --profile mac --threads 10 --inputs c2l_inputs --out c2l_out
+    DATA=/path/to/data
+    python run_cell2location.py --profile vm --threads 32 --vis_epochs 10000 --inputs $DATA/c2l_inputs --out $DATA/c2l_out_vm > c2l_vm.log 2>&1 &
 """
 import argparse, os, time
 
