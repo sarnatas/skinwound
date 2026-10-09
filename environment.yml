@@ -1,3 +1,7 @@
+# NOTE: Space Ranger (used only by ens-ngs/alignment_mock) is NOT installed by this file.
+# It is a proprietary 10x Genomics binary (Linux x86_64 only, not on pip/conda-forge):
+# download the tarball from the 10x Genomics website, unpack it, and put its folder on PATH
+# (export PATH=/path/to/spaceranger-X.Y.Z:$PATH). See ens-ngs/alignment_mock/README.md.
 name: skinwound
 channels:
   - conda-forge
@@ -39,3 +43,6 @@ dependencies:
       - scvi-tools==1.4.2
       - cell2location==0.1.5
       - pyro-ppl==1.9.1
+
+      # --- Jupyter kernel (so the notebook can run in this environment) ---
+      - ipykernel
