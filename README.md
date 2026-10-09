@@ -7,14 +7,14 @@ This repository contains practical courses on **spatial transcriptomics and sing
 
 The authors created acute wounds in healthy volunteers and sampled the wound edge before wounding (`Skin`) and at day 1, 7 and 30 (`Wound1`, `Wound7`, `Wound30`), profiling the same individuals with 10x Visium and 10x Chromium scRNA-seq. The time course covers the inflammatory, proliferative and remodeling phases of human wound healing. The courses use these public data to teach quality control, clustering, batch effects, cell-type annotation, spatial deconvolution (Cell2location) and spatial neighbourhood analysis, with an emphasis on critical thinking about analysis choices.
 
-## Student notebook (ENS de Lyon, NGS practicals)
+## Practical notebook (ENS de Lyon, NGS practicals)
 
-**[Open the notebook as a website](https://sarnatas.github.io/skinwound/ens-ngs/notebooks/Analysis_students.html)**: navigable, with table of contents (code and instructions; results appear when you run it).
+**[Open the notebook as a website](https://sarnatas.github.io/skinwound/ens-ngs/notebooks/Analysis_open.html)**: navigable, with table of contents (instructions and hints; results appear when you run it).
 
 - Course page, setup and data layout: <https://sarnatas.github.io/skinwound/ens-ngs/>
-- To work on it: download [`Analysis_students.ipynb`](ens-ngs/notebooks/Analysis_students.ipynb) and [`ens_helpers.py`](ens-ngs/notebooks/ens_helpers.py) (same folder) and create the environment (see below).
+- To work on it: download [`Analysis_open.ipynb`](ens-ngs/notebooks/Analysis_open.ipynb) (a single file) and create the environment (see below).
 
-The website is rebuilt automatically from this notebook at every push to `main`.
+The notebook is a guide: students explore the tools themselves, with folded hints for the technically difficult steps, and deliver their own notebook at the end. The website is rebuilt automatically from it at every push to `main`.
 
 ## Courses
 
@@ -60,7 +60,7 @@ Main packages: scanpy, squidpy, spatialdata (+ spatialdata-io, spatialdata-plot)
 
 ## The website
 
-The site is built with [Quarto](https://quarto.org) and published on GitHub Pages by the workflow `.github/workflows/publish.yml`. Only the pages listed in `_quarto.yml` are published (the student notebook, never the instructor one). Notebooks are rendered, **not executed**. To preview it locally:
+The site is built with [Quarto](https://quarto.org) and published on GitHub Pages by the workflow `.github/workflows/publish.yml`. Only the pages listed in `_quarto.yml` are published (the practical notebook, never the instructor one). Notebooks are rendered, **not executed**. To preview it locally:
 
 ```bash
 quarto preview

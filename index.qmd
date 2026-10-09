@@ -10,7 +10,7 @@ This site gathers the practicals built on the dataset of **Liu et al., *Spatiote
 ### ENS de Lyon: NGS practicals
 Spatial transcriptomics and its integration with scRNA-seq: QC, clustering, batch effects, cell-type annotation, deconvolution with Cell2location, spatial neighbourhoods.
 
-[**Open the student notebook →**](ens-ngs/notebooks/Analysis_students.ipynb){.btn .btn-primary} [Course page and setup](ens-ngs/index.qmd){.btn .btn-outline-secondary}
+[**Open the practical notebook →**](ens-ngs/notebooks/Analysis_open.ipynb){.btn .btn-primary} [Course page and setup](ens-ngs/index.qmd){.btn .btn-outline-secondary}
 :::
 
 ::: {.course-card}

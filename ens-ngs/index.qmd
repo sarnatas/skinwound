@@ -7,9 +7,11 @@ subtitle: "Spatial transcriptomics (Visium) and integration with scRNA-seq"
 
 ::: {.callout-important}
 ## The notebook
-[**Open the student notebook (web version)**](notebooks/Analysis_students.ipynb), or download it to work on it: [`Analysis_students.ipynb`](https://raw.githubusercontent.com/sarnatas/skinwound/main/ens-ngs/notebooks/Analysis_students.ipynb) (right-click, *save link as*) together with [`ens_helpers.py`](notebooks/ens_helpers.py), which must sit **in the same folder**.
+[**Open the practical notebook (web version)**](notebooks/Analysis_open.ipynb), or download it to work on it: [`Analysis_open.ipynb`](https://raw.githubusercontent.com/sarnatas/skinwound/main/ens-ngs/notebooks/Analysis_open.ipynb) (right-click, *save link as*). It is a single file, with no helper module to install.
 
-The web version shows the instructions and the code, but **no results**: the figures appear when *you* run the notebook.
+The web version shows the instructions and the hints, but **no results**: the figures appear when *you* run your own analysis.
+
+Course slides: [`NGS_practicals_2026.pdf`](slides/NGS_practicals_2026.pdf).
 :::
 
 ## What you will do
@@ -20,17 +22,15 @@ The web version shows the instructions and the code, but **no results**: the fig
 4. **Annotate the spatial clusters** and **deconvolve** the spots with Cell2location.
 5. Read the results: *where* are the cell types, *when*, and *next to whom*?
 
-## How the notebook is organised
+## How we work
 
-Every code cell starts with a banner that says what is expected from you.
+The notebook is a **guide**, not an exercise sheet. It lists the steps of the analysis and the questions to discuss; **you write most of the code** and you are expected to explore the tools (`scanpy`, `squidpy`, `spatialdata`, `spatialdata_plot`): read their documentation, try things, look at what the objects contain. We start with **one sample at a time**, and put them together later.
 
-| Banner | Meaning |
-|---|---|
-| <span class="legend-run">RUN</span> | Run the cell as is. Repetitive plotting and bookkeeping code is hidden in `ens_helpers.py`; the banner says what the function does. |
-| <span class="legend-read">READ</span> | Tricky or new code, shown in full: run it, but also read it and be ready to explain it. |
-| <span class="legend-turn">YOUR TURN</span> | **You write the code.** Blanks are marked `____`; the banner lists the steps and what you should obtain. |
-
-*Question* cells are for short written answers, to be discussed together. Boxes marked *try on your own first, then click* contain the discussion.
+- Each part has a **Goal** and **questions to discuss** together, then empty cells for your code.
+- **Hints** are folded. Open one only after you have tried. Full solutions are given only for the parts where it is easy to get stuck for technical reasons (file formats, data structures, known software traps), never for the analysis choices (filtering, normalisation, clustering...): those are yours.
+- A few **custom functions** are already written in the notebook, each with an explanation of why it exists.
+- Write your **choices and reasons** in the notes cells: they matter more than the code.
+- At the end of the course you **deliver your own notebook**, answering a question you chose.
 
 ## Setup
 
@@ -43,7 +43,7 @@ mamba activate skinwound
 
 Then open the notebook with Jupyter (or VS Code) using the `skinwound` environment as kernel.
 
-**2. Data.** The notebook expects one course folder (the variable `BASE` in the second cell of the notebook) organised as follows:
+**2. Data.** The notebook expects one course folder (the variable `BASE` in the paths cell of the notebook, section 0) organised as follows:
 
 ```
 BASE/
@@ -52,13 +52,13 @@ BASE/
     ├── GSE241132_RAW/            scRNA-seq: folders PWH27D0/, PWH27D1/, PWH27D7/, PWH27D30/
     │   └── GSE241132_cell_metadata.txt
     ├── paper_marker_genes.csv    marker genes reported in the paper
-    └── processed_data/           instructors' checkpoints and the Cell2location output
+    └── processed_data/           the Cell2location output computed by the instructors
 ```
 
-The raw data are public on GEO and are **not** stored in this repository. On the course machines the folder is already prepared: ask the instructors for its location. Your own results are written to `BASE/my_results/`.
+The raw data are public on GEO and are **not** stored in this repository. On the course machines the folder is already prepared: ask the instructors for its location. Your own checkpoints are written to `BASE/my_results/`.
 
 ## Tips
 
 - Run the cells **in order**, and read the error message before asking for help.
 - Whenever you pick a threshold or a parameter, be ready to justify it with a plot.
-- If you are stuck, the instructors' checkpoints in `processed_data/` are a safety net (commented out in the notebook). Their cluster numbers may differ from yours: redo your annotation dictionaries if you use them.
+- The Cell2location results (`processed_data/q05_cell_abundance.csv`) are computed by the instructors, because the training is long. The file [`q05_cell_abundance_explained.md`](notebooks/q05_cell_abundance_explained.md) explains what they are.

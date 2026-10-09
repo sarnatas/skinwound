@@ -43,3 +43,7 @@ ens-ngs/alignment_mock/*.mri.tgz
 
 # --- R ---
 .Rhistory
+
+# --- slides: only the PDF is versioned, not the PowerPoint source ---
+ens-ngs/slides/*.pptx
+ens-ngs/notebooks/Analysis.ipynb
