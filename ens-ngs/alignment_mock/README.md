@@ -18,6 +18,14 @@ Adapt `--localcores` / `--localmem` to your machine.
 
 ## What is in this folder
 
+> **The toy data are not stored in this repository.** For the practical they are already on the
+> course server (`<TODO: path>`). To regenerate them elsewhere (e.g. for a future alignment
+> exercise), run `make_toy_data.py` (see its header; it needs the GSE241124 `tissue_positions_list.csv`
+> files). Only the two scripts and this README are versioned; `toy_data/` and the Space Ranger
+> outputs are git-ignored.
+
+The layout below is what you find on the server / after running the generator.
+
 | Path | What it is |
 |---|---|
 | `alignment_mock.sh` | the script students run |

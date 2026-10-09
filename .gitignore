@@ -27,3 +27,19 @@ data/*
 _site/
 .quarto/
 /.jupyter_cache/
+
+# --- ens-ngs mock alignment: keep only make_toy_data.py, alignment_mock.sh, README ---
+# Toy data live on the course server; regenerate them with make_toy_data.py
+ens-ngs/alignment_mock/toy_data/
+ens-ngs/alignment_mock/toy_data.zip
+# Space Ranger outputs (spaceranger count --id=<sample> writes ./<sample>/ in the cwd)
+ens-ngs/alignment_mock/Skin/
+ens-ngs/alignment_mock/Wound1/
+ens-ngs/alignment_mock/Wound7/
+ens-ngs/alignment_mock/Wound30/
+ens-ngs/alignment_mock/mock_output/
+ens-ngs/alignment_mock/__*/
+ens-ngs/alignment_mock/*.mri.tgz
+
+# --- R ---
+.Rhistory
