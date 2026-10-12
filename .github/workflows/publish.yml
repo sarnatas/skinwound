@@ -1,7 +1,7 @@
 name: Publish site
 
 # Every push to main rebuilds and republishes the site, so that editing
-# ens-ngs/notebooks/Analysis_students.ipynb (or any .qmd page) updates it automatically.
+# ens-ngs/notebooks/Analysis_open.ipynb (or any .qmd page) updates it automatically.
 on:
   push:
     branches: [main]

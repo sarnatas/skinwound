@@ -1,17 +1,20 @@
 project:
   type: website
   output-dir: _site
-  # Only what is listed here is rendered/published. The instructor notebook
-  # (ens-ngs/notebooks/Analysis.ipynb, kept locally) and the READMEs are NOT part of the site.
+  # Only what is listed here is rendered/published. The instructor notebooks
+  # (ens-ngs/notebooks/Analysis.ipynb, supbiotech-m2/notebooks/Analysis_sc_full.ipynb, kept locally) and the READMEs are NOT part of the site.
   render:
     - index.qmd
     - background.qmd
     - ens-ngs/index.qmd
     - ens-ngs/notebooks/Analysis_open.ipynb
+    - supbiotech-m2/index.qmd
+    - supbiotech-m2/notebooks/Analysis_sc_students.ipynb
   resources:
     - environment.yml
     - ens-ngs/notebooks/q05_cell_abundance_explained.md
     - ens-ngs/slides/NGS_practicals_2026.pdf
+    - supbiotech-m2/environment.yml
 
 website:
   title: "Skin wound healing: ST & scRNA-seq"
@@ -28,6 +31,12 @@ website:
           - href: ens-ngs/index.qmd
             text: Course page and setup
           - href: ens-ngs/notebooks/Analysis_open.ipynb
+            text: Practical notebook
+      - text: SupBioTech M2 – scRNA-seq
+        menu:
+          - href: supbiotech-m2/index.qmd
+            text: Course page and setup
+          - href: supbiotech-m2/notebooks/Analysis_sc_students.ipynb
             text: Practical notebook
       - href: background.qmd
         text: Background

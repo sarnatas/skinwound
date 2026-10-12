@@ -1,0 +1,79 @@
+---
+title: "SupBioTech M2 (Paris): single-cell RNA-seq"
+subtitle: "From a count matrix to cell types, sub-states, trajectories and gene sets"
+---
+
+**Audience:** M2 students, SupBioTech (Paris). **Data:** scRNA-seq ([GSE241132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241132)) of one donor (PWH27) at four timepoints: healthy skin and wounds at day 1, day 7 and day 30.
+
+::: {.callout-important}
+## The notebook
+[**Open the practical notebook (web version)**](notebooks/Analysis_sc_students.ipynb), or download it to work on it: [`Analysis_sc_students.ipynb`](https://raw.githubusercontent.com/sarnatas/skinwound/main/supbiotech-m2/notebooks/Analysis_sc_students.ipynb) (right-click, *save link as*). It is a single file, with no helper module to install.
+
+The web version shows the instructions, the empty cells and the folded hints, but **no results**: the figures appear when *you* run your own analysis.
+:::
+
+## What you will do
+
+The notebook has **two halves**, which can be done in two sessions.
+
+**First half (Parts 1-16): the whole tissue.**
+
+1. Understand what a scRNA-seq count matrix is and what an `AnnData` object contains.
+2. Quality control of cells and genes, doublet removal.
+3. Normalisation, highly variable genes, PCA, neighbour graph and UMAP.
+4. Think about **batch effects**, and when *not* to correct them.
+5. Clustering (and how to choose the resolution), marker genes, **cell type annotation**, validation against the published annotation.
+6. How the tissue composition changes during healing.
+
+**Second half (Parts 17-21): zooming in on the keratinocytes.**
+
+7. **Sub-clustering**: which states exist *inside* a cell type, and is the timepoint a biological or a technical effect?
+8. **Trajectory and pseudotime** (PAGA, diffusion pseudotime): do the states form an ordered path, and which genes change along it?
+9. **Gene set enrichment** (over-representation analysis and GSEA): which biological processes do these genes represent, and what are the traps?
+
+## How we work
+
+Every section follows the same rhythm: a **Concept** to read, a code cell to **Run**, sometimes an experiment where we **Break it** on purpose, a **Question** whose answer is folded, and a **Take-home**. The notebook has three kinds of code cells (the coloured border is visible on the web version):
+
+- <span class="legend-run">Run</span>: the code is already written. Execute it, then *look at the output*.
+- <span class="legend-read">Read</span>: technical code already written (workarounds, plumbing). Execute it and read it carefully.
+- <span class="legend-turn">Your turn</span>: an **empty cell** with a starter comment. **You write the code.**
+
+Below each *Your turn* cell there are two folded boxes, to open **in this order and only after a real attempt**: **Hint 1** (the idea: which function, what its arguments mean) and **Hint 2** (the full solution, to run and then modify, not to copy blindly). Write your **choices and reasons** in the notes cells: they matter more than the code.
+
+At the end of the course you **deliver your own notebook**, run from top to bottom, together with a short report (see the section *Deliverable* at the end of the notebook).
+
+## Setup
+
+**1. Python environment** (download [`environment.yml`](environment.yml)):
+
+```bash
+mamba env create -f environment.yml
+mamba activate supbiotech-sc
+python -m ipykernel install --user --name skinwound --display-name "Python (skinwound)"
+```
+
+Then open the notebook with Jupyter (or VS Code) using the `Python (skinwound)` kernel. The environment needs internet access at install time (conda-forge, PyPI and GitHub, for the RESOLUTE package).
+
+**2. Data.** The notebook expects one course folder (the variable `BASE` in the setup cell, Part 1) organised as follows:
+
+```
+BASE/
+└── data/
+    ├── GSE241132_RAW/            scRNA-seq: folders PWH27D0/, PWH27D1/, PWH27D7/, PWH27D30/
+    │   └── GSE241132_cell_metadata.txt
+    ├── paper_marker_genes.csv    marker genes reported in the paper
+    ├── processed_data/SupBioTech/   the instructors' checkpoints (safety net, read-only)
+    └── gene_sets/                cache of the gene set library (created at the first run)
+```
+
+The raw data are public on GEO and are **not** stored in this repository. On the course machines the folder is already prepared: ask the instructors for its location. Your own checkpoints are written to `BASE/my_results/`.
+
+## Tips
+
+- **Memory.** The first half needs about 8 GB of RAM for this donor (16 GB is comfortable). If the kernel dies, typically at the doublet step, close the other programs before anything else.
+- Run the cells **in order**, and read the error message (its last line first) before asking for help. *Kernel → Restart Kernel and Run All Cells* tells you whether your notebook works from scratch; it stops at the first *Your turn* cell that is still empty.
+- **Cluster numbers are not stable** from one computer to another: the same group of cells can get a different number. Always check the marker genes, not only the number.
+- **Safety net.** If you are stuck and cannot recover, the instructors' version of each checkpoint is in `data/processed_data/SupBioTech/`: every checkpoint cell shows, as a comment, the line that loads it.
+- The first run of Part 20 downloads the Gene Ontology library (internet needed, only once); afterwards it is read from the local cache.
+- Whenever you pick a threshold or a parameter, be ready to justify it with a plot.

@@ -1,0 +1,50 @@
+# Environment for the SupBioTech single-cell course
+#
+#   conda env create -f environment.yml
+#   conda activate supbiotech-sc
+#   python -m ipykernel install --user --name skinwound --display-name "Python (skinwound)"
+#
+#
+# Versions are the ones used to test the notebooks end-to-end (Linux x86_64, Python 3.13).
+# Needs internet access to conda-forge, PyPI and github.com (RESOLUTE) at install time.
+name: supbiotech-sc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip
+  - pip:
+      # --- core single-cell ---
+      - scanpy==1.11.5
+      - anndata==0.12.19
+      - numpy==2.5.3
+      - scipy==1.18.1
+      - pandas==2.3.3
+      - scikit-learn==1.9.1
+      - scikit-image==0.26.0        # required by sc.pp.scrublet (doublet detection)
+      - numba==0.68.0
+      - umap-learn==0.5.12
+      - pynndescent==0.6.0
+      - h5py==3.16.0
+      - statsmodels==0.15.0
+
+      # --- clustering (Leiden, igraph flavor) ---
+      - leidenalg==0.12.0
+      - python-igraph==1.0.0
+
+      # --- batch correction ---
+      - harmonypy==2.1.0
+
+      # --- clustering resolution (RESOLUTE, installs as `sc_resolute`; commit used in the tests) ---
+      - git+https://github.com/spatial-cell-id/resolute.git@68e4473c627b64e7b48e34935fffd6cd2ca8d572
+
+      # --- gene set enrichment (advanced notebook) ---
+      - gseapy==1.3.1
+
+      # --- plotting ---
+      - matplotlib==3.11.2
+      - seaborn==0.13.2
+
+      # --- Jupyter ---
+      - ipykernel==7.4.0
+      - jupyterlab
