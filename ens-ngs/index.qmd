@@ -64,23 +64,23 @@ All the data are already accessible from your VM, in the attached storage: the t
 
 ::: {.callout-warning}
 ## Pay attention to the paths
-Most errors in this practical come from wrong paths. Before running any command, check where you are (`pwd`) and where the files are (`ls`). The paths below contain `<STORAGE_PATH>`: replace it with the location of the attached storage on **your** VM. The same care applies to the paths at the beginning of the notebook.
+Most errors in this practical come from wrong paths. All the paths written here (such as `/path/to/...`) are generic: replace them with the right ones, both for the input (where you read) and the output (where you write). We will see together in class where to read and write. Before running a command, check with `pwd` and `ls` that you are where you think you are. The same applies to the notebook.
 :::
 
 **a) Build the reference.** `spaceranger count` needs a reference built with `spaceranger mkref`; here the FASTA and GTF files are those of a toy genome:
 
 ```bash
-cd <STORAGE_PATH>/alignment_mock/toy_data
+cd /path/to/alignment_mock/toy_data
 spaceranger mkref --genome=toy_ref \
           --fasta=reference_src/toy_genome.fa \
           --genes=reference_src/toy_genes.gtf
 cd ..
 ```
 
-**b) Align the four samples.** Read the script first: it is a loop over the four samples calling `spaceranger count`. Its paths (`toy_data/...`) are relative, so run it from the `alignment_mock` folder.
+**b) Align the four samples.** Read the script first: it is a loop over the four samples calling `spaceranger count`. Its paths (`toy_data/...`) are relative, so run it from the folder that contains it.
 
 ```bash
-pwd                      # must end with alignment_mock
+cd /path/to/alignment_mock
 bash alignment_mock.sh
 ```
 
