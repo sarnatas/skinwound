@@ -67,18 +67,17 @@ All the data are already accessible from your VM, in the attached storage: the t
 Most errors in this practical come from wrong paths. Before running any command, check where you are (`pwd`) and where the files are (`ls`). The paths below contain `<STORAGE_PATH>`: replace it with the location of the attached storage on **your** VM. The same care applies to the paths at the beginning of the notebook.
 :::
 
-**a) Copy the toy data and build the reference.** Work in your own folder, so that the outputs of Space Ranger are written in your home and not in the shared storage. `spaceranger count` needs a reference built with `spaceranger mkref`; here the FASTA and GTF files are those of a toy genome:
+**a) Build the reference.** `spaceranger count` needs a reference built with `spaceranger mkref`; here the FASTA and GTF files are those of a toy genome:
 
 ```bash
-cp -r <STORAGE_PATH>/alignment_mock ~/alignment_mock
-cd ~/alignment_mock/toy_data
+cd <STORAGE_PATH>/alignment_mock/toy_data
 spaceranger mkref --genome=toy_ref \
           --fasta=reference_src/toy_genome.fa \
           --genes=reference_src/toy_genes.gtf
 cd ..
 ```
 
-**b) Align the four samples.** Read the script first: it is a loop over the four samples calling `spaceranger count`. Its paths (`toy_data/...`) are relative, so run it from `~/alignment_mock`.
+**b) Align the four samples.** Read the script first: it is a loop over the four samples calling `spaceranger count`. Its paths (`toy_data/...`) are relative, so run it from the `alignment_mock` folder.
 
 ```bash
 pwd                      # must end with alignment_mock
