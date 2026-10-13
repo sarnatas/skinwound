@@ -56,16 +56,35 @@ conda run -n skinwound python -m ipykernel install --user --name skinwound --dis
 
 Once you open the notebook, remember to select the corresponding kernel: click on the top right where "Python 3 (ipykernel)" is written, and select **Python skinwound**.
 
-**3. Data.** The notebook expects one course folder (the variable `BASE` in the paths cell of the notebook, section 0) organised as follows:
+**3. Mock alignment with Space Ranger**
 
-```
-BASE/
-└── data/
-    ├── GSE241124_RAW/            Visium: folders Skin/, Wound1/, Wound7/, Wound30/ (Space Ranger outputs)
-    ├── GSE241132_RAW/            scRNA-seq: folders PWH27D0/, PWH27D1/, PWH27D7/, PWH27D30/
-    │   └── GSE241132_cell_metadata.txt
-    ├── paper_marker_genes.csv    marker genes reported in the paper
-    └── processed_data/           the Cell2location output computed by the instructors
+Before starting the notebook, the alignment: you will run the alignment step yourself, on tiny synthetic FASTQ files for the four samples of the practical (Skin, Wound1, Wound7, Wound30). We will not use the real data to align, it would take too much time. The goal is to see what an alignment run looks like (inputs, command line, logs, QC report), not to produce results. Afterwards, forget the output: the notebook uses the real, already aligned data (GSE241124 and GSE241132).
+
+All the data are already accessible from your VM, in the attached storage: the toy data for this warm-up, and the real data used in the notebook. Nothing has to be downloaded.
+
+::: {.callout-warning}
+## Pay attention to the paths
+Most errors in this practical come from wrong paths. Before running any command, check where you are (`pwd`) and where the files are (`ls`). The paths below contain `<STORAGE_PATH>`: replace it with the location of the attached storage on **your** VM. The same care applies to the paths at the beginning of the notebook.
+:::
+
+**a) Copy the toy data and build the reference.** Work in your own folder, so that the outputs of Space Ranger are written in your home and not in the shared storage. `spaceranger count` needs a reference built with `spaceranger mkref`; here the FASTA and GTF files are those of a toy genome:
+
+```bash
+cp -r <STORAGE_PATH>/alignment_mock ~/alignment_mock
+cd ~/alignment_mock/toy_data
+spaceranger mkref --genome=toy_ref \
+          --fasta=reference_src/toy_genome.fa \
+          --genes=reference_src/toy_genes.gtf
+cd ..
 ```
 
-The raw data are public on GEO and are **not** stored in this repository. On the course machines the folder is already prepared: ask the instructors for its location. Your own checkpoints are written to `BASE/my_results/`.
+**b) Align the four samples.** Read the script first: it is a loop over the four samples calling `spaceranger count`. Its paths (`toy_data/...`) are relative, so run it from `~/alignment_mock`.
+
+```bash
+pwd                      # must end with alignment_mock
+bash alignment_mock.sh
+```
+
+**c) Look at the output.** Open `<sample>/outs/web_summary.html`: mapping rate, valid barcodes, sequencing saturation, spots under tissue, median genes per spot.
+
+**About the toy data.** The spot barcodes and the relative expression of 47 skin/wound marker genes per spot are real. Every nucleotide is synthetic: gene names are real (KRT5, S100A8, COL1A1...) but the sequences are random, so this is **not** the human genome. Do not read anything biological into these results.
