@@ -34,16 +34,29 @@ The notebook is a **guide**, not an exercise sheet. It lists the steps of the an
 
 ## Setup
 
-**1. Python environment** (download [`environment.yml`](../environment.yml)):
+**1. Start a virtual machine (VM) on Biosphere.** Preliminary steps:
+
+1. Connect to the [Biosphere catalogue](https://biosphere.france-bioinformatique.fr/catalogue/) (RAINBio tab).
+2. Search for the [Jupyter appliance](https://biosphere.france-bioinformatique.fr/catalogue/appliance/131/).
+3. Once on the page, press the green button **RUN** (top right), then **Advanced Configuration and Start**.
+4. Name your VM, and select **UEENS-LYON NGS26** in *Group to use*.
+5. In *Cloud*, select **meso-psmn-cirrus**.
+6. In *Cloud Flavor*, select an appropriate configuration for the VM: **standard.8c32g**, meaning 8 CPU cores and 32 GB RAM.
+7. Press **Start Now**.
+8. Switch to the **MyVM** tab. Once the VM is ready (approximately 15 minutes after creating it), you should see **https** and **Params** on the left. Press **Params** and copy your `JUPYTER_TOKEN`. Then press **https** and continue to the login screen, where you paste the token.
+
+**2. Python environment.** In the VM, download [`environment.yml`](../environment.yml) and install the environment:
 
 ```bash
-mamba env create -f environment.yml
-mamba activate skinwound
+conda env create -f environment.yml
+conda activate skinwound
+pip install ipykernel
+conda run -n skinwound python -m ipykernel install --user --name skinwound --display-name "Python skinwound"
 ```
 
-Then open the notebook with Jupyter (or VS Code) using the `skinwound` environment as kernel.
+Once you open the notebook, remember to select the corresponding kernel: click on the top right where "Python 3 (ipykernel)" is written, and select **Python skinwound**.
 
-**2. Data.** The notebook expects one course folder (the variable `BASE` in the paths cell of the notebook, section 0) organised as follows:
+**3. Data.** The notebook expects one course folder (the variable `BASE` in the paths cell of the notebook, section 0) organised as follows:
 
 ```
 BASE/
@@ -56,9 +69,3 @@ BASE/
 ```
 
 The raw data are public on GEO and are **not** stored in this repository. On the course machines the folder is already prepared: ask the instructors for its location. Your own checkpoints are written to `BASE/my_results/`.
-
-## Tips
-
-- Run the cells **in order**, and read the error message before asking for help.
-- Whenever you pick a threshold or a parameter, be ready to justify it with a plot.
-- The Cell2location results (`processed_data/q05_cell_abundance.csv`) are computed by the instructors, because the training is long. The file [`q05_cell_abundance_explained.md`](notebooks/q05_cell_abundance_explained.md) explains what they are.
