@@ -29,8 +29,8 @@ dependencies:
       - bbknn
       - scanorama
 
-      # --- clustering resolution selection ---
-      - git+https://github.com/spatial-cell-id/resolute.git
+      # --- clustering resolution selection (RESOLUTE, installs as `sc_resolute`: use `import sc_resolute as rs`; commit used in the tests) ---
+      - git+https://github.com/spatial-cell-id/resolute.git@68e4473c627b64e7b48e34935fffd6cd2ca8d572
 
 
       - scvi-tools==1.4.2
