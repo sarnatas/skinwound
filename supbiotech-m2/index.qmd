@@ -55,25 +55,24 @@ python -m ipykernel install --user --name skinwound --display-name "Python (skin
 
 Then open the notebook with Jupyter (or VS Code) using the `Python (skinwound)` kernel. The environment needs internet access at install time (conda-forge, PyPI and GitHub, for the RESOLUTE package).
 
-**2. Data.** The notebook expects one course folder (the variable `BASE` in the setup cell, Part 1) organised as follows:
+**2. Data and paths.** The notebook needs two folders, set in the setup cell (Part 1): `DATA`, the input data, and `OUT`, a folder where you can write your results. `DATA` is organised as follows:
 
 ```
-BASE/
-└── data/
-    ├── GSE241132_RAW/            scRNA-seq: folders PWH27D0/, PWH27D1/, PWH27D7/, PWH27D30/
-    │   └── GSE241132_cell_metadata.txt
-    ├── paper_marker_genes.csv    marker genes reported in the paper
-    ├── processed_data/SupBioTech/   the instructors' checkpoints (safety net, read-only)
-    └── gene_sets/                cache of the gene set library (created at the first run)
+DATA/
+├── GSE241132_RAW/            scRNA-seq: folders PWH27D0/, PWH27D1/, PWH27D7/, PWH27D30/
+│   └── GSE241132_cell_metadata.txt
+└── paper_marker_genes.csv    marker genes reported in the paper
 ```
 
-The raw data are public on GEO and are **not** stored in this repository. On the course machines the folder is already prepared: ask the instructors for its location. Your own checkpoints are written to `BASE/my_results/`.
+The raw data are public on GEO and are **not** stored in this repository. Ask the instructors where the data are on your machine or server.
+
+**Pay attention to the paths**: they must point to folders that exist where you work. Edit them, then check with `ls` that the data are really there before running the rest of the notebook.
 
 ## Tips
 
 - **Memory.** The first half needs about 8 GB of RAM for this donor (16 GB is comfortable). If the kernel dies, typically at the doublet step, close the other programs before anything else.
 - Run the cells **in order**, and read the error message (its last line first) before asking for help. *Kernel → Restart Kernel and Run All Cells* tells you whether your notebook works from scratch; it stops at the first *Your turn* cell that is still empty.
 - **Cluster numbers are not stable** from one computer to another: the same group of cells can get a different number. Always check the marker genes, not only the number.
-- **Safety net.** If you are stuck and cannot recover, the instructors' version of each checkpoint is in `data/processed_data/SupBioTech/`: every checkpoint cell shows, as a comment, the line that loads it.
+- **Paths.** A `FileNotFoundError` in the first cells almost always means a wrong path in the setup cell: check `DATA` and `OUT` first.
 - The first run of Part 20 downloads the Gene Ontology library (internet needed, only once); afterwards it is read from the local cache.
 - Whenever you pick a threshold or a parameter, be ready to justify it with a plot.

@@ -43,12 +43,11 @@ mamba activate supbiotech-sc
 python -m ipykernel install --user --name skinwound --display-name "Python (skinwound)"
 ```
 
-Data: see `../data/README.md` (or the course server path given by the instructor). Checkpoints of the instructor run go in `data/processed_data/SupBioTech/` (safety net for the students); the first run of Part 20 downloads and caches the GO library in `data/gene_sets/`.
+Data: see `../data/README.md` (or the location given by the instructor). The notebooks have two paths to set in the setup cell (`DATA` for the input data, `OUT` for the results): pay attention to them, they depend on the machine. The first run of Part 20 downloads and caches the GO library (internet needed, only once).
 
 ## For the instructors
 
 - The student notebook runs the same code as the instructor one (checked when it was built: replacing every "Your turn" cell by its Hint 2 gives exactly the instructor code). If you modify one of the two notebooks, update the other by hand.
-- The instructor run must exist before the course: `adata_sc_leiden_res0.2.h5ad`, `adata_sc_leiden_res0.2_annotated.h5ad`, `adata_sc_annotated_cell_state.h5ad` and `sc_data_PWH27_processed.h5ad` in `processed_data/SupBioTech/`.
 - Cluster numbers are not reproducible across machines: the reference solutions translate them through the marker genes.
 
 ## Instructors
