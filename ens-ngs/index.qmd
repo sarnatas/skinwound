@@ -56,7 +56,9 @@ conda run -n skinwound python -m ipykernel install --user --name skinwound --dis
 
 Once you open the notebook, remember to select the corresponding kernel: click on the top right where "Python 3 (ipykernel)" is written, and select **Python skinwound**.
 
-**3. Mock alignment with Space Ranger**
+**3. A second VM, with RStudio.** In addition to this Python environment for the downstream analysis, you also need to open another VM with RStudio (appliance [UE NGS-ENS Lyon](https://biosphere.france-bioinformatique.fr/catalogue/appliance/58/)). You will use it for the bash tutorial, the git tutorial (and all the git operations) and for the alignment. Follow the instructions of the other tutors to open this VM and to do the bash and git tutorials (they are common to all groups).
+
+**4. Mock alignment with Space Ranger**
 
 Before starting the notebook, the alignment: you will run the alignment step yourself, on tiny synthetic FASTQ files for the four samples of the practical (Skin, Wound1, Wound7, Wound30). We will not use the real data to align, it would take too much time. The goal is to see what an alignment run looks like (inputs, command line, logs, QC report), not to produce results. Afterwards, forget the output: the notebook uses the real, already aligned data (GSE241124 and GSE241132).
 
