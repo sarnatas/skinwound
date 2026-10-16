@@ -28,12 +28,12 @@ By the end of the course the student can:
 3. explain what normalisation, highly variable genes, PCA, the kNN graph and UMAP do, and what a UMAP can *not* tell;
 4. decide whether a batch effect should be corrected, given what the "batch" variable represents;
 5. cluster the cells, annotate the clusters from marker genes, and validate the annotation against an independent reference;
-6. zoom in on a cell type (sub-clustering from raw counts), order cells along a pseudotime with an explicit root, and interpret gene lists with ORA and GSEA, knowing the traps of each.
+6. zoom in on a cell type (sub-clustering from raw counts), order cells along a pseudotime with an explicit root, and interpret a gene ranking with GSEA, knowing its traps.
 
 ## Outline
 
 First half (the whole tissue): setup, 10x technology, `AnnData`, QC, doublets, normalisation, HVG, PCA, kNN graph and UMAP, batch effects, clustering (RESOLUTE), marker genes, annotation, validation, composition over time (Parts 1-16).
-Second half (keratinocytes): zooming in, sub-clustering with and without Harmony, PAGA and diffusion pseudotime, gene trends, ORA and GSEA with GO Biological Process (Parts 17-21).
+Second half (keratinocytes): zooming in, sub-clustering with and without Harmony, PAGA and diffusion pseudotime, gene trends, GSEA with GO Biological Process (Parts 17-21).
 
 ## Prerequisites and setup
 

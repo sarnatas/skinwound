@@ -29,7 +29,7 @@ The notebook has **two halves**, which can be done in two sessions.
 
 7. **Sub-clustering**: which states exist *inside* a cell type, and is the timepoint a biological or a technical effect?
 8. **Trajectory and pseudotime** (PAGA, diffusion pseudotime): do the states form an ordered path, and which genes change along it?
-9. **Gene set enrichment** (over-representation analysis and GSEA): which biological processes do these genes represent, and what are the traps?
+9. **Gene set enrichment** (GSEA on a ranking of all genes): which biological processes change after wounding, and what are the traps (redundant terms, one donor)?
 
 ## How we work
 
@@ -41,7 +41,7 @@ Every section follows the same rhythm: a **Concept** to read, a code cell to **R
 
 Below each *Your turn* cell there are two folded boxes, to open **in this order and only after a real attempt**: **Hint 1** (the idea: which function, what its arguments mean) and **Hint 2** (the full solution, to run and then modify, not to copy blindly). Write your **choices and reasons** in the notes cells: they matter more than the code.
 
-At the end of the course you **deliver your own notebook**, run from top to bottom, together with a short report (see the section *Deliverable* at the end of the notebook).
+**What you hand in.** At the end of the course each student delivers **their own notebook** (one per student, even if you worked in a group): run from top to bottom, saved with its figures, with commented code and **a lot of text** that explains and justifies every step. The notebook *is* the report, there is no separate document. The details are in the section *Deliverable* at the end of the notebook.
 
 ## Setup
 
@@ -158,7 +158,7 @@ If the installation stops with an error, copy the **last lines** of the message 
 
 ### Step 3 · Download and unzip the data
 
-1. Download the archive **`DATA.zip`** (about 300 MB) from this link: [**download DATA.zip**](https://filesender.renater.fr/?s=download&token=0623510d-08a4-4fe4-a59f-491a384215a1). (The page may ask you to accept the terms; the link is valid for a limited time: if it has expired, ask the instructor.)
+1. Download the archive **`DATA.zip`** (about 300 MB) from this link: [**download DATA.zip**](https://filesender.renater.fr/?s=download&token=0623510d-08a4-4fe4-a59f-491a384215a1). (The page may ask you to accept the terms; the link is valid **until Tuesday 20 October 2026**: after that date, ask the instructor.)
 2. Put `DATA.zip` in your working folder (the same as before).
 3. **Unzip** it. Pick your system:
 
