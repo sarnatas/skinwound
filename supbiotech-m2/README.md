@@ -38,12 +38,14 @@ Second half (keratinocytes): zooming in, sub-clustering with and without Harmony
 ## Prerequisites and setup
 
 ```bash
-mamba env create -f environment.yml
-mamba activate supbiotech-sc
+conda env create -f environment.yml
+conda activate supbiotech-sc
 python -m ipykernel install --user --name skinwound --display-name "Python (skinwound)"
 ```
 
-Data: see `../data/README.md` (or the location given by the instructor). The notebooks have two paths to set in the setup cell (`DATA` for the input data, `OUT` for the results): pay attention to them, they depend on the machine. The first run of Part 20 downloads and caches the GO library (internet needed, only once).
+Data: the students download `DATA.zip` (course archive, ~300 MB: the four samples `PWH27D0/D1/D7/D30`, `GSE241132_cell_metadata.txt` and `paper_marker_genes.csv`, directly inside the `DATA/` folder, no `GSE241132_RAW` sub-folder) and unzip it. The notebook has two paths to set in the setup cell (`DATA` for the input data, `OUT` for the results) and checks them before going on. The first run of Part 20 downloads and caches the GO library (internet needed, only once). Students install conda with **Miniforge** (open source) and work locally; step-by-step instructions for Windows, Mac and Linux are on the course page ([`index.qmd`](index.qmd)).
+
+Platforms: the pinned `environment.yml` was tested on Linux; for Windows and Apple-silicon Macs the availability of every package was checked, not a full run. On **Windows** `harmonypy 0.0.10` is used (version 2.x has no Windows package). **Macs with an Intel processor cannot install it** (no `numba`/`gseapy` packages): those students work in a group.
 
 ## For the instructors
 

@@ -6,6 +6,8 @@
 #
 #
 # Versions are the ones used to test the notebooks end-to-end (Linux x86_64, Python 3.13).
+# Checked by package availability (not by a full run): Windows 64-bit, Mac with Apple chip (M1/M2/M3/M4), Linux.
+# NOT installable: Mac with an Intel processor (no numba / gseapy packages for it with these versions).
 # Needs internet access to conda-forge, PyPI and github.com (RESOLUTE) at install time.
 name: supbiotech-sc
 channels:
@@ -13,6 +15,7 @@ channels:
 dependencies:
   - python=3.13
   - pip
+  - git                  # needed by pip to install RESOLUTE from GitHub (Windows has no git by default)
   - pip:
       # --- core single-cell ---
       - scanpy==1.11.5
@@ -33,7 +36,9 @@ dependencies:
       - python-igraph==1.0.0
 
       # --- batch correction ---
-      - harmonypy==2.1.0
+      # harmonypy 2.x has no Windows package: on Windows we use 0.0.10 (the notebook handles both output shapes)
+      - 'harmonypy==2.1.0; sys_platform != "win32"'
+      - 'harmonypy==0.0.10; sys_platform == "win32"'
 
       # --- clustering resolution (RESOLUTE, installs as `sc_resolute`; commit used in the tests) ---
       - git+https://github.com/spatial-cell-id/resolute.git@68e4473c627b64e7b48e34935fffd6cd2ca8d572
