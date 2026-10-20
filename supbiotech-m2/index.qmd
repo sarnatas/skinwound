@@ -1,6 +1,6 @@
 ---
 title: "SupBioTech M2 (Paris): single-cell RNA-seq"
-subtitle: "From a count matrix to cell types, sub-states, trajectories and gene sets"
+subtitle: "From a count matrix to cell types, sub-states and trajectories"
 ---
 
 **Audience:** M2 students, SupBioTech (Paris). **Data:** scRNA-seq ([GSE241132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241132)) of one donor (PWH27) at four timepoints: healthy skin and wounds at day 1, day 7 and day 30.
@@ -25,11 +25,10 @@ The notebook has **two halves**, which can be done in two sessions.
 5. Clustering (and how to choose the resolution), marker genes, **cell type annotation**, validation against the published annotation.
 6. How the tissue composition changes during healing.
 
-**Second half (Parts 17-21): zooming in on the keratinocytes.**
+**Second half (Parts 17-20): zooming in on the keratinocytes.**
 
 7. **Sub-clustering**: which states exist *inside* a cell type, and is the timepoint a biological or a technical effect?
 8. **Trajectory and pseudotime** (PAGA, diffusion pseudotime): do the states form an ordered path, and which genes change along it?
-9. **Gene set enrichment** (GSEA on a ranking of all genes): which biological processes change after wounding, and what are the traps (redundant terms, one donor)?
 
 ## How we work
 
@@ -50,7 +49,7 @@ You will work **on your own computer** (Windows, Mac or Linux). All the software
 ::: {.callout-note}
 ## What you need
 - A computer with **8 GB of RAM** at least (16 GB is comfortable) and **about 15 GB of free disk space**.
-- An **internet connection**: for the installation (several GB are downloaded), and once more during the practical (Part 20).
+- An **internet connection**: for the installation (several GB are downloaded).
 - Some time for the installation, which is mostly waiting for downloads: **do it before the first session**, not during it.
 :::
 
@@ -214,7 +213,7 @@ Or right-click the file in your file manager and choose *Extract Here*.
 
    Check with `ls DATA` (Mac / Linux) or `dir DATA` (Windows): you must see `PWH27D0`, `PWH27D1`, `PWH27D7`, `PWH27D30`, `GSE241132_cell_metadata.txt` and `paper_marker_genes.csv` **directly**. If you only see another folder called `DATA`, you have a folder inside a folder: move its content one level up.
 
-**This is everything the analysis needs.** There is nothing else to download by hand: the folder for your results (`my_results`) is created by the notebook, and the Gene Ontology library of Part 20 is downloaded automatically, once.
+**This is everything the analysis needs.** There is nothing else to download by hand: the folder for your results (`my_results`) is created by the notebook.
 
 The raw data are public on GEO ([GSE241132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241132)); the archive contains only the four samples of the donor used in the course.
 
@@ -256,7 +255,6 @@ Now you can start: read the notebook from the top.
 - Run the cells **in order**, and read the error message (its last line first) before asking for help. *Kernel → Restart Kernel and Run All Cells* tells you whether your notebook works from scratch; cells that depend on a *Your turn* cell you have not completed yet will fail: that is expected.
 - **Cluster numbers are not stable** from one computer to another: the same group of cells can get a different number. Always check the marker genes, not only the number.
 - **Paths, again.** A `FileNotFoundError` almost always means a wrong path: check `DATA` and `OUT` first.
-- The first run of Part 20 downloads the Gene Ontology library (internet needed, only once); afterwards it is read from the local cache in `OUT`.
 - Whenever you pick a threshold or a parameter, be ready to justify it with a plot.
 
 ### Common problems

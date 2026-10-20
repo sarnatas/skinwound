@@ -15,7 +15,7 @@ Spatial transcriptomics and its integration with scRNA-seq: QC, clustering, batc
 
 ::: {.course-card}
 ### SupBioTech M2 (Paris): scRNA-seq
-From the raw count matrix to annotated cell types, then a zoom on the keratinocytes: sub-states, a differentiation trajectory (pseudotime) and gene set enrichment.
+From the raw count matrix to annotated cell types, then a zoom on the keratinocytes: sub-states and a differentiation trajectory (pseudotime).
 
 [**Open the practical notebook →**](supbiotech-m2/notebooks/Analysis_sc_students.ipynb){.btn .btn-primary} [Course page and setup](supbiotech-m2/index.qmd){.btn .btn-outline-secondary}
 :::

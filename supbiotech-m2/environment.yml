@@ -7,7 +7,7 @@
 #
 # Versions are the ones used to test the notebooks end-to-end (Linux x86_64, Python 3.13).
 # Checked by package availability (not by a full run): Windows 64-bit, Mac with Apple chip (M1/M2/M3/M4), Linux.
-# NOT installable: Mac with an Intel processor (no numba / gseapy packages for it with these versions).
+# NOT installable: Mac with an Intel processor (no numba package for it with these versions).
 # Needs internet access to conda-forge, PyPI and github.com (RESOLUTE) at install time.
 name: supbiotech-sc
 channels:
@@ -42,9 +42,6 @@ dependencies:
 
       # --- clustering resolution (RESOLUTE, installs as `sc_resolute`; commit used in the tests) ---
       - git+https://github.com/spatial-cell-id/resolute.git@68e4473c627b64e7b48e34935fffd6cd2ca8d572
-
-      # --- gene set enrichment (advanced notebook) ---
-      - gseapy==1.3.1
 
       # --- plotting ---
       - matplotlib==3.11.2
