@@ -157,7 +157,7 @@ If the installation stops with an error, copy the **last lines** of the message 
 
 ### Step 3 · Download and unzip the data
 
-1. Download the archive **`DATA.zip`** (about 300 MB) from this link: [**download DATA.zip**](https://filesender.renater.fr/?s=download&token=0623510d-08a4-4fe4-a59f-491a384215a1). (The page may ask you to accept the terms; the link is valid **until Tuesday 20 October 2026**: after that date, ask the instructor.)
+1. Download the archive **`DATA.zip`** (about 300 MB) from this link: [**download DATA.zip**](https://filesender.renater.fr/?s=download&token=de1f91ed-a5ce-4259-845c-6ba15efbc471). (The page may ask you to accept the terms; if the link has expired, ask the instructor.)
 2. Put `DATA.zip` in your working folder (the same as before).
 3. **Unzip** it. Pick your system:
 
