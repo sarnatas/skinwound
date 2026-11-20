@@ -47,3 +47,9 @@ ens-ngs/alignment_mock/*.mri.tgz
 # --- slides: only the PDF is versioned, not the PowerPoint source ---
 ens-ngs/slides/*.pptx
 ens-ngs/notebooks/Analysis.ipynb
+
+# --- cnrs-st: instructor material and sources stay local (public repo) ---
+cnrs-st/notebooks/instructor/
+cnrs-st/resources/
+cnrs-st/slides/*.pptx
+cnrs-st/*.xlsx

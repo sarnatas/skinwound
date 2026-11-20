@@ -1,39 +1,25 @@
 # CNRS professional training: spatial transcriptomics (Visium)
 
-**Audience:** Professionals (CNRS formation entreprise)
-**Data:** Visium only (GSE241124)
-**Scope:** Spatial transcriptomics only: no scRNA-seq required
+**CNRS Formation Entreprise**, 24–25 November 2026, ENS de Lyon / Spatial-Cell-ID. Instructors: Sergio and Marco.
+**Audience:** bioinformaticians (engineers, post-docs, PhD students).
+**Data:** Visium (GSE241124), 16 sections; scRNA-seq reference from GSE241132 for the sc–st integration on Day 2.
 
-Biological background and data description: see the [main README](../README.md) and [`../data/README.md`](../data/README.md).
+Online: the course pages are part of the site of this repository (menu *CNRS – Spatial transcriptomics*).
 
 ## Contents
 
-| Folder | What it contains | Status |
-|---|---|---|
-| [`slides/`](slides/) | Lecture slides (PDF / HTML) | TODO |
-| [`notebooks/`](notebooks/) | Analysis notebooks (marimo `.py` and/or Jupyter `.ipynb`) | TODO |
-| [`site/`](site/) | Static website (rendered notebooks, HTML exports) served by GitHub Pages | placeholder |
+| Path | What it contains |
+|---|---|
+| `index.qmd` | Course page: access to IFB Biosphere, permanent storage, Python environment, schedule of the two days |
+| `practical.qmd` | The practical work: what the participants do, step by step, and the questions to discuss |
+| `CNRS_ST_participant_guide.pdf` | The two pages above in one PDF (sent by e-mail to the participants) |
+| `environment.yml` | Conda environment `cnrs-st` (versions tested together; also on the course storage) |
+| `scripts/` | Preparation of `DATA_CNRS` from the GEO downloads |
+| `slides/` | Lecture slides |
 
-Online version: `https://<github-user>.github.io/<repo-name>/cnrs-st/site/`  <!-- TODO -->
+Kept locally, not in the repository (see `.gitignore`): the instructor notebook (`notebooks/instructor/`), the PowerPoint sources, the planning spreadsheet, `resources/`.
 
-## Learning objectives
-<!-- TODO: 4-6 bullet points -->
+## Computing resources
 
-## Planned outline
-1. Principles of Visium and structure of the data (matrix + image + spot coordinates)
-2. Loading, quality control and filtering of spots
-3. Normalisation, clustering, spatial visualisation
-4. Spatially variable genes and marker genes of tissue regions (epidermis, dermis, wound edge)
-5. Comparison across healing phases
-6. Interpretation and limits of spot-based resolution
-
-## Prerequisites and setup
-Python environment: see the root `environment.yml`.
-```bash
-mamba env create -f ../environment.yml
-mamba activate skinwound
-```
-Data: see `../data/README.md` (or the course server path given by the instructor).
-
-## Instructors
-<!-- TODO -->
+IFB Biosphere VMs (Jupyter appliance, group *Spatial-Cell-ID*). Data, environment file and one folder per participant are on the permanent storage
+`/home/jovyan/ifbdata/spatial_cell_id/CNRS_Formation_Entreprise/` (`DATA_CNRS/`, `environment.yml`, `trainees/<first letter of first name + last name>/`).

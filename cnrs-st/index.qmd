@@ -1,0 +1,136 @@
+---
+title: "Transcriptomique spatiale : analyse de données et intégration scRNA-seq en Python"
+subtitle: "CNRS Formation Entreprise · 24–25 November 2026 · ENS de Lyon / Spatial-Cell-ID"
+---
+
+::: {.callout-important}
+## The guide in one file
+This page and [The practical work](practical.qmd) are also available as a single PDF: [**`CNRS_ST_participant_guide.pdf`**](CNRS_ST_participant_guide.pdf).
+:::
+
+**Data:** Visium spatial transcriptomics of human skin wounds ([GSE241124](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241124)): 4 donors, each sampled as healthy skin and as a wound at day 1, day 7 and day 30, i.e. 16 tissue sections. On Day 2, a single-cell RNA-seq reference from the same study ([GSE241132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241132)) is used for sc–st integration.
+
+**Paper:** Liu et al., *Spatiotemporal single-cell roadmap of human skin wound healing*, Cell Stem Cell 32, 479–498 (2025).
+
+This page has three parts:
+
+1. [Before the course](#before): get access to the computing resources. **Please do steps 1.1 to 1.4 before the course starts.**
+2. [The two days](#days): how the course is organised.
+3. [The practical work](#practical): what you will do with the data.
+
+## 1. Before the course {#before}
+
+All the work is done on a virtual machine (VM) of the IFB cloud, **Biosphere**, with JupyterLab in your web browser. You do not need to install anything on your own computer.
+
+### 1.1 Join the Spatial-Cell-ID group on Biosphere (a few days before the course)
+
+Your request has to be validated by hand, so do this step **in advance**.
+
+1. Go to <https://biosphere.france-bioinformatique.fr/>.
+2. Click **Sign in** at the top right.
+3. Click **Sign in** again.
+4. Click **Accept conditions**.
+5. Select your own institution.
+6. Log in with your **institutional** username and password (no private e-mail account such as Gmail, Hotmail, Yahoo...).
+7. Fill in the information: last name, first name, city and postal code. Leave the other fields as they are and accept.
+8. You are redirected to a new page. Click the small person icon at the top right, then select **Groups**.
+9. Click **Join a group** in the tabs at the top left.
+10. Search for the group **Spatial-Cell-ID** and click the **+** button to apply.
+
+That's it. Now wait for your application to be validated (the group will then appear in **Groups**).
+
+### 1.2 Start a virtual machine
+
+You can do this as soon as your membership is validated.
+
+1. Connect to the [Biosphere catalogue](https://biosphere.france-bioinformatique.fr/catalogue/) (**RAINBio** tab).
+2. Search for the [Jupyter appliance](https://biosphere.france-bioinformatique.fr/catalogue/appliance/131/).
+3. On the appliance page, press the green button **RUN** (top right), then **Advanced Configuration and Start**.
+4. Name your VM, and select **Spatial-Cell-ID** in *Group to use*.
+5. In *Cloud*, select **meso-psmn-cirrus**.
+6. In *Cloud Flavor*, select **standard.8c32g** (8 CPU cores, 32 GB RAM).
+7. Press **Start Now**.
+8. Switch to the **MyVM** tab. The VM is ready after about 15 minutes: you then see **https** and **Params** on the left. Press **Params** and copy your `JUPYTER_TOKEN`. Then press **https** and continue to the login screen, where you paste the token.
+
+::: {.callout-tip}
+## Keep the same VM for both days
+Do not delete your VM at the end of Day 1. Your files are safe anyway (see 1.3), but with a new VM you would have to install the Python environment again (step 1.4).
+:::
+
+### 1.3 Where your files live: the permanent storage
+
+Everything you need for the course is in a **permanent storage**, shared by all the VMs of the Spatial-Cell-ID group:
+
+```
+/home/jovyan/ifbdata/spatial_cell_id/CNRS_Formation_Entreprise/
+├── environment.yml     the Python environment (step 1.4)
+├── DATA_CNRS/          the data
+└── trainees/
+    ├── mrossi/         one personal folder per participant
+    └── ...
+```
+
+- **The data** are already prepared for you in `DATA_CNRS`: the 16 Visium sections with clean names, the authors' spot annotation, and the scRNA-seq reference for Day 2. Read them from there; do not modify, move or write anything in this folder.
+- **Your personal folder** is in `trainees`. Its name is the first letter of your first name followed by your last name, all attached (Mario Rossi → `mrossi`). **Save all your notebooks and results there.**
+
+In JupyterLab, you reach it from the file browser on the left: `ifbdata` → `spatial_cell_id` → `CNRS_Formation_Entreprise` → `trainees` → your folder.
+
+::: {.callout-warning}
+## Never save your work outside the permanent storage
+Your home folder (`/home/jovyan`, except `ifbdata`) and the local disk of the VM belong to the VM: when the VM is deleted, everything in them is lost. The permanent storage is independent of the VMs: if you delete your VM and start a new one, you find your folder exactly as you left it.
+:::
+
+### 1.4 Install the Python environment
+
+In JupyterLab, open a terminal (*File → New → Terminal*) and run:
+
+```bash
+conda env create -f /home/jovyan/ifbdata/spatial_cell_id/CNRS_Formation_Entreprise/environment.yml
+conda activate cnrs-st
+python -m ipykernel install --user --name cnrs-st --display-name "Python cnrs-st"
+```
+
+- The first command takes **10 to 20 minutes** (it downloads PyTorch, needed by one of the Day 2 tools) and prints a lot of text: this is normal. Wait until you get the prompt back without an error.
+- Quick test, still in the terminal: `python -c "import scanpy, squidpy, spatialdata; print(scanpy.__version__)"` should print `1.11.5`.
+
+When you open a notebook, select the right kernel: click at the top right, where **Python 3 (ipykernel)** is written, and choose **Python cnrs-st**. If it is not in the list, reload the browser page.
+
+::: {.callout-note}
+## The environment belongs to the VM
+Unlike your files, the environment is installed on the VM itself. If you start a new VM, you only need to repeat this step.
+:::
+
+::: {.callout-note collapse="true"}
+## Why these exact versions?
+Some recent releases are incompatible with each other (for instance, Harmony and the neighbour graph in scanpy). The versions in `environment.yml` were tested together: please do not update them during the course.
+:::
+
+## 2. The two days {#days}
+
+Each day mixes short lectures and long hands-on sessions. You work on your own VM, from your own laptop.
+
+### Day 1 · Tuesday 24 November: fundamentals and processing of spatial data
+
+| Time | Session | Format |
+|---|---|---|
+| 09:00 | Introduction: why space, technologies (sequencing vs imaging), general workflow | Lecture |
+| 10:30 | Getting started: access to the Biosphere VM, the scverse ecosystem, `SpatialData` and `AnnData` | Lecture + hands-on |
+| 12:30 | Lunch | |
+| 13:30 | Discovering the datasets, quality control, preprocessing and filtering | Hands-on |
+| 15:00 | Normalisation, spatial exploration, dimensionality reduction, differential expression, visualisation | Hands-on |
+| 16:30 | Wrap-up and questions | Discussion |
+
+### Day 2 · Wednesday 25 November: advanced analysis, integration and presentation of the results
+
+| Time | Session | Format |
+|---|---|---|
+| 09:00 | Introduction to sc–st integration | Lecture |
+| 10:30 | Independent analysis: integration and spatial clustering of the data | Hands-on |
+| 12:30 | Lunch | |
+| 13:30 | Finishing the project, preparing the slides | Hands-on |
+| 15:30 | Presentations | Presentations |
+| 16:30 | Final wrap-up and questions | Discussion |
+
+## 3. The practical work {#practical}
+
+The hands-on sessions have their own page: **[The practical work](practical.qmd)**. It describes, step by step, what you will do with the data on both days, the questions to discuss, and how we work together.

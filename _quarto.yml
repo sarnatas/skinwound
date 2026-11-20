@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: _site
   # Only what is listed here is rendered/published. The instructor notebooks
-  # (ens-ngs/notebooks/Analysis.ipynb, supbiotech-m2/notebooks/Analysis_sc_full.ipynb, kept locally) and the READMEs are NOT part of the site.
+  # (ens-ngs/notebooks/Analysis.ipynb, supbiotech-m2/notebooks/Analysis_sc_full.ipynb, cnrs-st/notebooks/instructor/, kept locally) and the READMEs are NOT part of the site.
   render:
     - index.qmd
     - background.qmd
@@ -10,11 +10,14 @@ project:
     - ens-ngs/notebooks/Analysis_open.ipynb
     - supbiotech-m2/index.qmd
     - supbiotech-m2/notebooks/Analysis_sc_students.ipynb
+    - cnrs-st/index.qmd
+    - cnrs-st/practical.qmd
   resources:
     - environment.yml
     - ens-ngs/notebooks/q05_cell_abundance_explained.md
     - ens-ngs/slides/NGS_practicals_2026.pdf
     - supbiotech-m2/environment.yml
+    - cnrs-st/CNRS_ST_participant_guide.pdf
 
 website:
   title: "Skin wound healing: ST & scRNA-seq"
@@ -38,6 +41,12 @@ website:
             text: Course page and setup
           - href: supbiotech-m2/notebooks/Analysis_sc_students.ipynb
             text: Practical notebook
+      - text: CNRS – Spatial transcriptomics
+        menu:
+          - href: cnrs-st/index.qmd
+            text: Course page and setup
+          - href: cnrs-st/practical.qmd
+            text: The practical work
       - href: background.qmd
         text: Background
     right:
