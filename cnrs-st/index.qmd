@@ -3,11 +3,6 @@ title: "Transcriptomique spatiale : analyse de données et intégration scRNA-se
 subtitle: "CNRS Formation Entreprise · 24–25 November 2026 · ENS de Lyon / Spatial-Cell-ID"
 ---
 
-::: {.callout-important}
-## The guide in one file
-This page and [The practical work](practical.qmd) are also available as a single PDF: [**`CNRS_ST_participant_guide.pdf`**](CNRS_ST_participant_guide.pdf).
-:::
-
 **Data:** Visium spatial transcriptomics of human skin wounds ([GSE241124](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241124)): 4 donors, each sampled as healthy skin and as a wound at day 1, day 7 and day 30, i.e. 16 tissue sections. On Day 2, a single-cell RNA-seq reference from the same study ([GSE241132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241132)) is used for sc–st integration.
 
 **Paper:** Liu et al., *Spatiotemporal single-cell roadmap of human skin wound healing*, Cell Stem Cell 32, 479–498 (2025).

@@ -9,19 +9,47 @@ This page is your **roadmap** for the hands-on sessions. It tells you *what* to 
 
 - **One notebook per person**, saved in your personal folder (`trainees/<your folder>`, see [Before the course](index.qmd#before)).
 - **Every step has a goal and a few questions.** Write your choices and your answers in text cells next to the code (why this threshold, what you see in this plot): they matter more than the code.
-- **Your choices first, the paper afterwards.** Choose your filters and parameters yourself and justify them with plots. Then compare with what the authors did: keep the paper at hand, in particular the STAR Methods (*ST-seq data processing*).
+- **Your choices, justified.** Choose your filters and parameters yourself and justify them with plots. Comparing them with what the authors did is optional: if you want to, the paper, and in particular its STAR Methods (*ST-seq data processing*), is the reference to keep at hand.
 - **Talk to each other.** Compare thresholds, plots and interpretations with your neighbours: two different choices, both justified, are often the most interesting part of the discussion.
 - **Ask us, Sergio and Marco**, at any time: about the biology, the methods, or a technical problem. Do not stay stuck on an error for more than 10 minutes.
 - **At the end of the course** we will share our own notebook, run on the same data, so that you can compare it with yours.
 
 ## Getting started
 
-In JupyterLab, go to your folder (`ifbdata` → `spatial_cell_id` → `CNRS_Formation_Entreprise` → `trainees` → your folder) and create a new notebook with the **Python cnrs-st** kernel. In its first cell, after the imports, define where the data are and where your results go:
+In JupyterLab, go to your folder (`ifbdata` → `spatial_cell_id` → `CNRS_Formation_Entreprise` → `trainees` → your folder) and create a new notebook with the **Python cnrs-st** kernel. Its first cell loads all the libraries used during the course and defines where the data are and where your results go. You can copy it as it is: only replace `mrossi` with the name of your folder. The first time, importing `cellcharter` takes a few seconds (it loads PyTorch).
 
 ```python
+import os
+import warnings
+warnings.filterwarnings("ignore")
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.colors import Normalize
+import seaborn as sns
+
+import scanpy as sc
+import anndata as ad
+import squidpy as sq
+import spatialdata as sd
+import spatialdata_io as sdio
+import spatialdata_plot          # adds the .pl plot functions
+
+# Day 1, if you have time: pseudobulk differential expression
+from pydeseq2.dds import DeseqDataSet
+from pydeseq2.ds import DeseqStats
+
+# Day 2: spatial domains and sc-st integration
+import cellcharter as cc
+import tangram as tg
+
+sc.settings.set_figure_params(dpi=80, facecolor="white", frameon=False)
+
 BASE = "/home/jovyan/ifbdata/spatial_cell_id/CNRS_Formation_Entreprise"
 DATA = f"{BASE}/DATA_CNRS"          # the data: read only
 OUT = f"{BASE}/trainees/mrossi"     # your folder: replace mrossi with yours
+os.makedirs(OUT, exist_ok=True)
 ```
 
 **The data** (in `DATA_CNRS`):
@@ -54,7 +82,7 @@ At the end of each part (after filtering, after clustering, at the end of your p
 
 - Open **one section** (for instance `Donor4_Wound7`) as a `SpatialData` object and print it. What are the *images*, the *shapes*, the *tables* and the *coordinate systems*? Where are the counts, and where are the positions of the spots?
 - Plot the H&E image with the spots on top.
-- Load the **16 sections** into one object. Add to the table the information you will need later: sample, donor, condition, sequencing batch, and the authors' annotation from their metadata file (it only exists for the spots they kept).
+- Load the **16 sections** into one object. Add to the table the information you will need later: sample, donor, condition, sequencing batch, and the authors' annotation from their metadata file (it only exists for the spots they kept; useful for the optional comparisons).
 - Look at the 16 H&E images side by side.
 
 **To discuss:** how different are the sections (size, shape, pieces of tissue)? Can you see the wound on the H&E alone?
@@ -72,7 +100,7 @@ The spot barcodes are the same in every section (same slide design). If you merg
 - Compare the sections: medians and distributions.
 - **Plot the QC metrics on the tissue**, one donor at a time (its 4 sections side by side).
 - Choose your filters for spots and genes. Before deciding, check how much of *each section* a threshold would remove. Write down your choice and why.
-- **Only then**, compare with the authors: their metadata contain only the spots they kept. How many spots did you remove, and how many did they? Where do the two choices differ, on the tissue and in the QC metrics? What could explain the difference?
+- *Optional:* compare your filtering with the authors'. Their metadata contain only the spots they kept: how many spots did you remove, and how many did they? Where do the two choices differ, on the tissue and in the QC metrics? What could explain the difference?
 - Save a checkpoint.
 
 **To discuss:**
@@ -128,13 +156,12 @@ The spot barcodes are the same in every section (same slide design). If you merg
 
 ### Step 6 · Choose a question (end of the morning lecture)
 
-In small groups, choose one option:
+In groups of **two people**, choose one option:
 
 | Option | Sections | Question |
 |---|---|---|
 | **A** · Time course in one person | Donor4: Skin, Wound1, Wound7, Wound30 | How do the regions of the wound change over time? Which cell types are where? |
 | **B** · Reproducibility across people | Wound7 of the 4 donors | Are the wound regions the same in every donor? What is batch, what is biology? |
-| **C** · Everything | the 16 sections | Regions shared by the whole cohort, and how they change over time in each donor |
 
 In every option the path is the same: integration across sections → spatial domains → description of the domains → cell types in space → one biological message, with its limits.
 
@@ -147,7 +174,6 @@ sdata = sd.read_zarr(f"{OUT}/visium_clustered.zarr")     # your checkpoint of Da
 
 GROUP_SAMPLES = ["Donor4_Skin", "Donor4_Wound1", "Donor4_Wound7", "Donor4_Wound30"]        # option A
 # GROUP_SAMPLES = ["Donor1_Wound7", "Donor2_Wound7", "Donor3_Wound7", "Donor4_Wound7"]     # option B
-# GROUP_SAMPLES = SAMPLES                                                                   # option C
 
 hires = [f"{s}_hires_image" for s in GROUP_SAMPLES]
 lowres = [f"{s}_lowres_image" for s in GROUP_SAMPLES]
@@ -193,7 +219,10 @@ adata_g.obs["sample"] = adata_g.obs["sample"].astype("category").cat.remove_unus
 **Goal:** find where the cell types identified by scRNA-seq are located in the tissue.
 
 - The reference `sc_reference_mod.h5ad` contains raw counts of scRNA-seq cells from Donor4 and Donor3 (all time points), with the authors' cell types in the column `cell_type`. Keep the raw counts before normalising it.
-- **Approach 1 · signature scores:** find marker genes of each cell type in the reference, then score the spots with them.
+- **Approach 1 · signature scores.**
+    - *Build the signatures.* In the reference, find the marker genes of each cell type against all the other cells (`sc.tl.rank_genes_groups`, Wilcoxon test), keep the clearly specific ones (for instance log fold change > 1 and adjusted p-value < 0.01) and take the top 20 to 30 per cell type. Check that the lists make sense (keratins for keratinocytes, collagens for fibroblasts...).
+    - *Score the spots.* Use `sc.tl.score_genes` on the log-normalised spot data, one score per cell type, with the signature genes that are present in the spots. For each spot, the score is the mean expression of the signature genes **minus** the mean expression of a set of control genes, picked at random among genes with a similar expression level. A positive score means that the signature is higher than expected by chance in that spot.
+    - *Read it with care.* A score is relative: it tells you in which spots a signature is strongest, but it is not a proportion of cells, and the scores of two different cell types are not directly comparable. It also depends on the depth of the spots: if your sections differ a lot in depth, rank-based scores (UCell, AUCell) are an alternative worth discussing.
 - **Approach 2 · Tangram** (`clusters` mode), one section at a time: it learns where to place the profile of each cell type so that the predicted expression matches the measured one.
 - **Check:** do the two approaches agree? Do they agree with single marker genes measured directly in the spots (an independent check)?
 - Plot a few cell types on the tissue.

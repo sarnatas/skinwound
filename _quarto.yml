@@ -17,7 +17,6 @@ project:
     - ens-ngs/notebooks/q05_cell_abundance_explained.md
     - ens-ngs/slides/NGS_practicals_2026.pdf
     - supbiotech-m2/environment.yml
-    - cnrs-st/CNRS_ST_participant_guide.pdf
 
 website:
   title: "Skin wound healing: ST & scRNA-seq"

@@ -12,7 +12,6 @@ Online: the course pages are part of the site of this repository (menu *CNRS –
 |---|---|
 | `index.qmd` | Course page: access to IFB Biosphere, permanent storage, Python environment, schedule of the two days |
 | `practical.qmd` | The practical work: what the participants do, step by step, and the questions to discuss |
-| `CNRS_ST_participant_guide.pdf` | The two pages above in one PDF (sent by e-mail to the participants) |
 | `environment.yml` | Conda environment `cnrs-st` (versions tested together; also on the course storage) |
 | `scripts/` | Preparation of `DATA_CNRS` from the GEO downloads |
 | `slides/` | Lecture slides |
