@@ -53,3 +53,6 @@ cnrs-st/notebooks/instructor/
 cnrs-st/resources/
 cnrs-st/slides/*.pptx
 cnrs-st/*.xlsx
+
+# --- Claude working copies: local only ---
+Claude outputs/
