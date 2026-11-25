@@ -104,12 +104,19 @@ Some recent releases are incompatible with each other (for instance, Harmony and
 
 Each day mixes short lectures and long hands-on sessions. You work on your own VM, from your own laptop.
 
+::: {.callout-note}
+## Slides (PDF)
+- [01 · Introduction to spatial transcriptomics](slides/01_Introduction_spatial_transcriptomics.pdf){download="01_Introduction_spatial_transcriptomics.pdf"} (5 MB)
+- [02 · The scverse ecosystem: SpatialData and AnnData](slides/02_scverse_SpatialData_AnnData.pdf){download="02_scverse_SpatialData_AnnData.pdf"} (0.7 MB)
+- [03 · Introduction to sc–st data integration](slides/03_Introduction_sc_st_integration.pdf){download="03_Introduction_sc_st_integration.pdf"} (2.6 MB, Marco Uderzo)
+:::
+
 ### Day 1 · Tuesday 24 November: fundamentals and processing of spatial data
 
 | Time | Session | Format |
 |---|---|---|
-| 09:00 | Introduction: why space, technologies (sequencing vs imaging), general workflow | Lecture |
-| 10:30 | Getting started: access to the Biosphere VM, the scverse ecosystem, `SpatialData` and `AnnData` | Lecture + hands-on |
+| 09:00 | Introduction: why space, technologies (sequencing vs imaging), general workflow ([slides](slides/01_Introduction_spatial_transcriptomics.pdf)) | Lecture |
+| 10:30 | Getting started: access to the Biosphere VM, the scverse ecosystem, `SpatialData` and `AnnData` ([slides](slides/02_scverse_SpatialData_AnnData.pdf)) | Lecture + hands-on |
 | 12:30 | Lunch | |
 | 13:30 | Discovering the datasets, quality control, preprocessing and filtering | Hands-on |
 | 15:00 | Normalisation, spatial exploration, dimensionality reduction, differential expression, visualisation | Hands-on |
@@ -119,7 +126,7 @@ Each day mixes short lectures and long hands-on sessions. You work on your own V
 
 | Time | Session | Format |
 |---|---|---|
-| 09:00 | Introduction to sc–st integration | Lecture |
+| 09:00 | Introduction to sc–st integration ([slides](slides/03_Introduction_sc_st_integration.pdf)) | Lecture |
 | 10:30 | Independent analysis: integration and spatial clustering of the data | Hands-on |
 | 12:30 | Lunch | |
 | 13:30 | Finishing the project, preparing the slides | Hands-on |

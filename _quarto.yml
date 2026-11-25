@@ -16,6 +16,9 @@ project:
     - environment.yml
     - ens-ngs/notebooks/q05_cell_abundance_explained.md
     - ens-ngs/slides/NGS_practicals_2026.pdf
+    - cnrs-st/slides/01_Introduction_spatial_transcriptomics.pdf
+    - cnrs-st/slides/02_scverse_SpatialData_AnnData.pdf
+    - cnrs-st/slides/03_Introduction_sc_st_integration.pdf
     - supbiotech-m2/environment.yml
 
 website:
