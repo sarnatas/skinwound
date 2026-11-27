@@ -22,6 +22,8 @@ data/*
 *.rds
 *.h5
 *.loom
+# exception: small scRNA-seq reference for the CNRS course (public data, see cnrs-st/data/README.md)
+!cnrs-st/data/sc_reference_mod.h5ad
 
 # --- Quarto site (built by GitHub Actions, never committed) ---
 _site/

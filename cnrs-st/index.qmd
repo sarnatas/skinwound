@@ -11,7 +11,7 @@ This page has three parts:
 
 1. [Before the course](#before): get access to the computing resources. **Please do steps 1.1 to 1.4 before the course starts.**
 2. [The two days](#days): how the course is organised.
-3. [The practical work](#practical): what you will do with the data.
+3. [The reference notebook](#practical): the complete analysis, with all its outputs, and the data to run it.
 
 ## 1. Before the course {#before}
 
@@ -133,6 +133,20 @@ Each day mixes short lectures and long hands-on sessions. You work on your own V
 | 15:30 | Presentations | Presentations |
 | 16:30 | Final wrap-up and questions | Discussion |
 
-## 3. The practical work {#practical}
+## 3. The reference notebook {#practical}
 
-The hands-on sessions have their own page: **[The practical work](practical.qmd)**. It describes, step by step, what you will do with the data on both days, the questions to discuss, and how we work together.
+The course is over: the step-by-step guide of the hands-on sessions is replaced by **the complete reference notebook**, the one we ran for the course, with all its outputs (figures, tables, interpretation of the results).
+
+- [**Open the reference notebook (web version)**](notebooks/CNRS_ST_reference.ipynb), or download it to run it again: [`CNRS_ST_reference.ipynb`](https://github.com/sarnatas/skinwound/raw/main/cnrs-st/notebooks/CNRS_ST_reference.ipynb) (26 MB, right-click, *save link as*).
+- It is one possible analysis, not *the* solution: if your choices (filters, parameters, option A or B) were different, your results are different too.
+
+### Data to run it
+
+- **Visium (16 sections):** GEO [GSE241124](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241124). The folders are renamed `DonorX_Condition` by [`scripts/build_data_cnrs.sh`](https://github.com/sarnatas/skinwound/blob/main/cnrs-st/scripts/build_data_cnrs.sh).
+- **scRNA-seq reference (Part D4):** [**download `sc_reference_mod.h5ad`**](https://github.com/sarnatas/skinwound/raw/main/cnrs-st/data/sc_reference_mod.h5ad) (66 MB) and put it in your `DATA` folder. It is a subset of GEO [GSE241132](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE241132) (donors PWH27 and PWH28, raw counts, the authors' annotation in `cell_type`): content and how it was built in [`data/README.md`](https://github.com/sarnatas/skinwound/blob/main/cnrs-st/data/README.md).
+- **Environment:** [`environment.yml`](https://github.com/sarnatas/skinwound/blob/main/cnrs-st/environment.yml) (conda environment `cnrs-st`, see 1.4).
+
+::: {.callout-note}
+## Please cite the original study
+All the data come from Liu Z. et al., *Spatiotemporal single-cell roadmap of human skin wound healing*, Cell Stem Cell 32, 479–498 (2025), <https://doi.org/10.1016/j.stem.2024.11.013> (open access, CC BY 4.0). They are redistributed here for teaching only.
+:::

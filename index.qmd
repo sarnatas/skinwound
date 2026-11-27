@@ -24,7 +24,7 @@ From the raw count matrix to annotated cell types, then a zoom on the keratinocy
 ### CNRS professional training: spatial transcriptomics
 Two days on the 16 Visium sections of the study: QC and filtering, clustering, integration across sections, spatial domains, and cell types in space with a scRNA-seq reference (signature scores, Tangram).
 
-[**The practical work →**](cnrs-st/practical.qmd){.btn .btn-primary} [Course page and setup](cnrs-st/index.qmd){.btn .btn-outline-secondary}
+[**Open the reference notebook →**](cnrs-st/notebooks/CNRS_ST_reference.ipynb){.btn .btn-primary} [Course page and setup](cnrs-st/index.qmd){.btn .btn-outline-secondary}
 :::
 
 New to the biology or to the datasets? Read the [background page](background.qmd).

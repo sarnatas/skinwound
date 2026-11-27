@@ -10,8 +10,9 @@ Online: the course pages are part of the site of this repository (menu *CNRS –
 
 | Path | What it contains |
 |---|---|
-| `index.qmd` | Course page: access to IFB Biosphere, permanent storage, Python environment, schedule of the two days |
-| `practical.qmd` | The practical work: what the participants do, step by step, and the questions to discuss |
+| `index.qmd` | Course page: access to IFB Biosphere, permanent storage, Python environment, schedule of the two days, link to the reference notebook and the data |
+| `notebooks/CNRS_ST_reference.ipynb` | Reference notebook, complete with outputs (published on the site after the course; replaces the former guide `practical.qmd`) |
+| `data/sc_reference_mod.h5ad` | scRNA-seq reference for Part D4 (subset of GSE241132; source, citation and content in `data/README.md`) |
 | `environment.yml` | Conda environment `cnrs-st` (versions tested together; also on the course storage) |
 | `scripts/` | Preparation of `DATA_CNRS` from the GEO downloads |
 | `slides/` | Lecture slides |

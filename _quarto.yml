@@ -11,7 +11,7 @@ project:
     - supbiotech-m2/index.qmd
     - supbiotech-m2/notebooks/Analysis_sc_students.ipynb
     - cnrs-st/index.qmd
-    - cnrs-st/practical.qmd
+    - cnrs-st/notebooks/CNRS_ST_reference.ipynb
   resources:
     - environment.yml
     - ens-ngs/notebooks/q05_cell_abundance_explained.md
@@ -47,8 +47,8 @@ website:
         menu:
           - href: cnrs-st/index.qmd
             text: Course page and setup
-          - href: cnrs-st/practical.qmd
-            text: The practical work
+          - href: cnrs-st/notebooks/CNRS_ST_reference.ipynb
+            text: Reference notebook (with outputs)
       - href: background.qmd
         text: Background
     right:
